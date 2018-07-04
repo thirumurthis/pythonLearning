@@ -18,4 +18,13 @@ elif x > 10:
         print ("greater than 10")
 elif x == 10:
     print ("equal to 10")
+
+#boolean operation
+# more of an english word
+
+if 1==1 and 2==2:
+    print("and operation is true")
+
+if 3!=4 or 2>4:
+    print ("or operator is sampled with true condition")
         
