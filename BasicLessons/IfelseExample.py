@@ -27,4 +27,12 @@ if 1==1 and 2==2:
 
 if 3!=4 or 2>4:
     print ("or operator is sampled with true condition")
+
+
+x = 4
+y = 2
+if not 1 + 1 == y or x == 4 and 7 == 8:
+    print("Yes")
+elif x > y:
+    print("No")
         
