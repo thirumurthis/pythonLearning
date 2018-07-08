@@ -1,0 +1,4 @@
+This is a sample file 
+to check whether the python can 
+read the content or not.
+number of lines is 4
