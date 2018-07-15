@@ -253,6 +253,214 @@ def numberfunc(numberfunc,x):
 # It uses self-reference function calling themselves.
 # solves the problem that can break up into easier sub-problems of the same type
 
+def factorial (x):
+    if x == 1:
+        return 1  # This is called bases case, after which the call exists
+    else:
+        return x * factorial (x-1)
+
+print ("Factorial of 5 is {0}".format(factorial(5)))
+
+################# NOTE: #######################
+
+# if the base case is not provided in a recursion it leads to infinite loop
+# RuntimeError occurs with maximum recursion depth exceeded.
+
+# uncomment to test this
+# def factorial (x):
+#     return x * factorial (x-1)
+
+# factorial(10)
+
+###################### IMPORTANT:  INDIRECT RECURSION ###########
+
+# one function is being called in another function,
+# the first function is again called in invoked (another) function
+
+def is_even(x):
+    if x ==0:
+        return True
+    else:
+        return is_odd(x-1)
+
+def is_odd(x):
+    return not is_even(x)
+
+print("is 17 even? {0} ".format(is_even(17)))
+print("is 23 odd? {0}".format(is_odd(23)))
+print("is 0 odd ? {0}".format(is_odd(0)))
+
+def fib(x):
+    if x==0 or x==1:
+        return 1
+    else:
+        print (x)
+        return fib(x-1)+fib(x-2)
+
+print (fib(4))
+
+# fib(3) + fib (2)
+# fib (2) + fib(1)/1
+#fib(0)/1 + fib(-1)
+
+# fib(2)/ + fib(0)/1
+# fib(1)/1 + fib(0)/1
+
+######################### IMPORTANT : SET ###########################
+
+# set are data structure similar to lists or dictionary.
+# set are created using curly braces {} / or using set function
+
+# {} => represents empty dictionary*; to create empty set use set().  
+
+# set includes some functionality of list like in to check item present
+
+odd_num = {1,3,5,7,9,11}
+random_word =set(["rout","alleviate","confer","permeate","sagacious","aussage"])
+# using set function not the square bracket.
+
+print(5 in odd_num)
+print( "permeate" not in random_word)  
+
+#################### NOTES: ON SET #######################
+
+# SET is different from list, but shares several operations of list like in, leng
+# SET is unordered, they cannot be indexed
+# SET cannot contain duplicate element
+
+# SET - faster to check whether the item is part of a set, rather than part of list. - because
+# of the way they are stored.
+
+# SET uses add, instead of append
+# SET operation remove(index) => removes specific indexed element from the set
+# SET operation pop => removes an arbitrary element.
+
+# SET is used for memebership testing and scenarion where duplicate entries to
+# be eliminated
+
+# Example
+
+nums = {1, 2, 1, 3, 1, 4, 5, 6}
+print(nums)
+nums.add(-7)
+nums.remove(3) # reporst keyError
+print(nums)
+
+number = {1,2,1,4,5,6,9}
+print(number)
+number.add(-5)
+number.remove(2)
+print(number)
+number.pop()
+print(number)
+
+######################### NOTES : SET  Mathematical operation #######################
+# Sets can be combined using mathematical operations.
+# | = The union operator | combines two sets to form a new one containing items in either. 
+# & = The intersection operator & gets items only in both. 
+# - = The difference operator - gets items in the first set but not in the second. 
+# ^ = The symmetric difference operator ^ gets items in either set, but not both
+
+print ("SET MATHEMITCAL OPERATION")
+numberset1 = {1,2,3,4,5,6,7,8}
+numberset2 = {6,7,8,9,10,11,12}
+print ("numberset1 = {0} && numberset2 = {1} ".format(numberset1,numberset2))
+print ("union : {0}".format(numberset1 | numberset2)) # union
+print ("intersecton : {0}".format(numberset1 & numberset2)) # intersecton / common
+print ("difference  : {0}".format(numberset1 - numberset2)) # diff only in one set /first set
+print ("symmetric diff : {0}".format(numberset1 ^ numberset2)) # symmetric differnce
+
+##################### IMPORTANT : USING LIST, SET, DICTIONARY , TUPLE ##########
+
+# python datastructure - supports list, tuples, dictionaries, sets
+# USAGE
+#When to use a dictionary:
+#- When you need a logical association between a *key:value* pair.
+#- When you need fast lookup for your data, based on a custom key.
+#- When your data is being constantly modified. Remember, dictionaries are mutable.
+
+#When to use the other types:
+#   - Use lists if you have a collection of data that does not need random access. Try to choose lists when you need a simple, iterable collection that is modified frequently.
+#  - Use a set if you need uniqueness for the elements. 
+#  - Use tuples when your data cannot change.
+
+# A tuple is used in combination with a dictionary,
+# for example, a tuple might represent a key, because it's immutable.
+
+######################## IMPORTANT : ITERTOOLS ######################3
+
+# ITERTOOLS is a module, which is a starndard library contaning several functions
+# that are useful in functional programming
+
+# One type of function it produces is infinite iterators. 
+#    - The function *count* counts from the value to infinite (count(n)). 
+#    - The function *cycle* infinitely iterates through an iterable (for instance a list or string). 
+#    - The function *repeat* repeats an object, either infinitely or a specific number of times.
+
+# using the whole module
+# Recap excercise
+#import itertools as iter
+
+print ("ITETTOOLS MODULE ")
+# using particular module from itertools
+from itertools import count
+# from itertools import cycle  # other modules
+
+for i in count(3): #  3- initial counter / index from which look will start
+    print(i)
+    if i >=11:
+        break
+
+# output : 3 4 5 6 7 8 9 10 11
+
+############################### NOTE : ITERTOOLS ADDITION FUNCTION ###########
+
+# takewhile - takes items from an iterable while a predicate function remains true;
+# chain - combines several iterables into one long one; 
+# accumulate - returns a running total of values in an iterable.
+
+# product & permutations - combinatoric function to perform combination task
+
+from itertools import takewhile,accumulate
+
+nums = list(accumulate(range(10)))
+print ("Accumulate function from 0-10: {0}".format(nums))
+
+print("takewhile function : {0} ".format(list(takewhile(lambda x: x<=6, nums))))
+
+# product & permuationa
+
+from itertools import product,permutations
+
+alphabets =('A','B')
+print (list (product (alphabets, range(2))))
+print (list (permutations(alphabets)))
+
+a={1, 2}
+print(len(list(product(range(3), a)))) # note length - not actual product
+print(list(product(range(3), a))) # note product
+
+nums = { 1,2,3,4,5,6}
+nums = {0,1,2, 3} & nums
+print(nums)
+nums = filter(lambda x : x>1, nums)
+print (len(list(nums)))
+
+def powerfunc(x,y):
+    if y==0:
+        return 1
+    else:
+        return x * powerfunc(x,y-1)
+
+print(powerfunc(2,3))
+    
+a = (lambda x : x * (x+1)) (6)
+print(a)
+
+
+
+
+
 
 
 
