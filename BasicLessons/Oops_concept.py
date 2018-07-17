@@ -249,6 +249,7 @@ point2 = ProductPoints(4,5)
 
 res = point1 * point2
 print ("{0} , {1}".format(res.x,res.y ))
+print ("{}".format(res.x))
 
 ############## NOTES : other magic methods #################
 #__sub__ for -
@@ -366,6 +367,46 @@ print(vague_list[2])
 # its reference is reassigned, or its reference goes out of scope.
 # When an object's reference count reaches zero, Python automatically deletes it.
 
+# program with private attribute in class
 
+class PrivateAttrEx:
+    __var1=10
+    def print_var1(self):
+        print (self.__var1)
 
+p = PrivateAttrEx()
+p.print_var1()
+print("Alternate way to access private attribute of class ")
+print(p._PrivateAttrEx__var1)
+
+# property decorator with getter and setter
+# declare property using @property
+# NOTE: Main importance of making an attribute property is make it read-only
+
+def get_input():
+  command = input(": ").split()
+  verb_word = command[0]
+  if verb_word in verb_dict:
+    verb = verb_dict[verb_word]
+  else:
+    print("Unknown verb {}". format(verb_word))
+    return
+
+  if len(command) >= 2:
+    noun_word = command[1]
+    print (verb(noun_word))
+  else:
+    print(verb("nothing"))
+
+def say(noun):
+  return 'You said "{}"'.format(noun)
+
+verb_dict = {
+  "say": say,
+}
+
+while True:
+  get_input()
+
+  
 
